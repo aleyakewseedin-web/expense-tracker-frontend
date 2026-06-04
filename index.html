@@ -675,47 +675,190 @@
   </head>
   <body>
     <div class="app">
-
       <!-- LANDING PAGE -->
-<div id="landingPage" style="display:none">
-  <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center">
-    <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:3.5rem;letter-spacing:-0.03em;margin-bottom:1rem">
-      Expense<span style="color:var(--accent)">.</span>
-    </div>
-    <div style="color:var(--text2);font-size:1.1rem;margin-bottom:0.5rem">Track smarter. Spend better.</div>
-    <div style="color:var(--text2);font-size:0.9rem;max-width:480px;margin-bottom:3rem;line-height:1.6">
-      A personal and team expense tracker with AI-powered monthly insights, multi-currency support, and real-time budget tracking.
-    </div>
-    <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
-      <button onclick="showLogin()" style="background:var(--accent);color:white;border:none;padding:0.9rem 2.5rem;border-radius:12px;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:all 0.2s">
-        Get Started
-      </button>
-    </div>
-    <div style="margin-top:4rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:700px;width:100%">
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:left">
-        <div style="font-size:1.5rem;margin-bottom:0.5rem">🤖</div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:0.25rem">AI Insights</div>
-        <div style="color:var(--text2);font-size:0.8rem">Monthly financial analysis powered by Llama 3</div>
+      <div id="landingPage" style="display: none">
+        <div
+          style="
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+          "
+        >
+          <div
+            style="
+              font-family: &quot;Syne&quot;, sans-serif;
+              font-weight: 800;
+              font-size: 3.5rem;
+              letter-spacing: -0.03em;
+              margin-bottom: 1rem;
+            "
+          >
+            Expense<span style="color: var(--accent)">.</span>
+          </div>
+          <div
+            style="
+              color: var(--text2);
+              font-size: 1.1rem;
+              margin-bottom: 0.5rem;
+            "
+          >
+            Track smarter. Spend better.
+          </div>
+          <div
+            style="
+              color: var(--text2);
+              font-size: 0.9rem;
+              max-width: 480px;
+              margin-bottom: 3rem;
+              line-height: 1.6;
+            "
+          >
+            A personal and team expense tracker with AI-powered monthly
+            insights, multi-currency support, and real-time budget tracking.
+          </div>
+          <div
+            style="
+              display: flex;
+              gap: 1rem;
+              flex-wrap: wrap;
+              justify-content: center;
+            "
+          >
+            <button
+              onclick="showLogin()"
+              style="
+                background: var(--accent);
+                color: white;
+                border: none;
+                padding: 0.9rem 2.5rem;
+                border-radius: 12px;
+                font-family: &quot;Syne&quot;, sans-serif;
+                font-weight: 700;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: all 0.2s;
+              "
+            >
+              Get Started
+            </button>
+          </div>
+          <div
+            style="
+              margin-top: 4rem;
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 1.5rem;
+              max-width: 900px;
+              width: 100%;
+            "
+          >
+            <div
+              style="
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                padding: 1.5rem;
+                text-align: left;
+              "
+            >
+              <div style="font-size: 1.5rem; margin-bottom: 0.5rem">🤖</div>
+              <div
+                style="
+                  font-family: &quot;Syne&quot;, sans-serif;
+                  font-weight: 700;
+                  font-size: 0.9rem;
+                  margin-bottom: 0.25rem;
+                "
+              >
+                AI Insights
+              </div>
+              <div style="color: var(--text2); font-size: 0.8rem">
+                Monthly financial analysis powered by Llama 3
+              </div>
+            </div>
+            <div
+              style="
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                padding: 1.5rem;
+                text-align: left;
+              "
+            >
+              <div style="font-size: 1.5rem; margin-bottom: 0.5rem">💱</div>
+              <div
+                style="
+                  font-family: &quot;Syne&quot;, sans-serif;
+                  font-weight: 700;
+                  font-size: 0.9rem;
+                  margin-bottom: 0.25rem;
+                "
+              >
+                Multi-Currency
+              </div>
+              <div style="color: var(--text2); font-size: 0.8rem">
+                Log expenses in any currency, converted to USD
+              </div>
+            </div>
+            <div
+              style="
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                padding: 1.5rem;
+                text-align: left;
+              "
+            >
+              <div style="font-size: 1.5rem; margin-bottom: 0.5rem">👥</div>
+              <div
+                style="
+                  font-family: &quot;Syne&quot;, sans-serif;
+                  font-weight: 700;
+                  font-size: 0.9rem;
+                  margin-bottom: 0.25rem;
+                "
+              >
+                Group Expenses
+              </div>
+              <div style="color: var(--text2); font-size: 0.8rem">
+                Split bills equally, by percentage, or exact amounts
+              </div>
+            </div>
+            <div
+              style="
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                padding: 1.5rem;
+                text-align: left;
+              "
+            >
+              <div style="font-size: 1.5rem; margin-bottom: 0.5rem">🔐</div>
+              <div
+                style="
+                  font-family: &quot;Syne&quot;, sans-serif;
+                  font-weight: 700;
+                  font-size: 0.9rem;
+                  margin-bottom: 0.25rem;
+                "
+              >
+                2FA Security
+              </div>
+              <div style="color: var(--text2); font-size: 0.8rem">
+                Protect your account with Google Authenticator
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:left">
-        <div style="font-size:1.5rem;margin-bottom:0.5rem">💱</div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:0.25rem">Multi-Currency</div>
-        <div style="color:var(--text2);font-size:0.8rem">Log expenses in any currency, converted to USD</div>
-      </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:left">
-        <div style="font-size:1.5rem;margin-bottom:0.5rem">👥</div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:0.25rem">Group Expenses</div>
-        <div style="color:var(--text2);font-size:0.8rem">Split bills equally, by percentage, or exact amounts</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-      
 
       <!-- AUTH SCREEN -->
-        <div class="auth-screen" id="authScreen" style="display:none">
-          <div class="auth-card">
+      <div class="auth-screen" id="authScreen" style="display: none">
+        <div class="auth-card">
           <div class="auth-title">Expense<span>.</span></div>
           <div class="auth-sub">Track smarter. Spend better.</div>
           <div class="auth-toggle">
@@ -742,11 +885,31 @@
             </div>
             <div class="form-group">
               <label>Password</label>
-              <input
-                type="password"
-                id="loginPassword"
-                placeholder="••••••••"
-              />
+              <div style="position: relative">
+                <input
+                  type="password"
+                  id="loginPassword"
+                  placeholder="••••••••"
+                  style="padding-right: 2.5rem"
+                />
+                <button
+                  type="button"
+                  onclick="togglePasswordVisibility('loginPassword', this)"
+                  style="
+                    position: absolute;
+                    right: 0.75rem;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    color: var(--text2);
+                    font-size: 1rem;
+                  "
+                >
+                  👁
+                </button>
+              </div>
             </div>
             <div class="form-group" id="totpField" style="display: none">
               <label>2FA Code</label>
@@ -772,11 +935,87 @@
             </div>
             <div class="form-group">
               <label>Password</label>
-              <input
-                type="password"
-                id="regPassword"
-                placeholder="min 8 characters"
-              />
+              <div style="position: relative">
+                <input
+                  type="password"
+                  id="regPassword"
+                  placeholder="Create a password"
+                  oninput="checkPasswordStrength()"
+                  style="padding-right: 2.5rem"
+                />
+                <button
+                  type="button"
+                  onclick="togglePasswordVisibility('regPassword', this)"
+                  style="
+                    position: absolute;
+                    right: 0.75rem;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    color: var(--text2);
+                    font-size: 1rem;
+                  "
+                >
+                  👁
+                </button>
+              </div>
+              <div
+                id="passwordRequirements"
+                style="margin-top: 0.5rem; display: none"
+              >
+                <div
+                  id="req-length"
+                  style="
+                    font-size: 0.78rem;
+                    padding: 0.2rem 0;
+                    color: var(--danger);
+                  "
+                >
+                  ✗ At least 8 characters
+                </div>
+                <div
+                  id="req-upper"
+                  style="
+                    font-size: 0.78rem;
+                    padding: 0.2rem 0;
+                    color: var(--danger);
+                  "
+                >
+                  ✗ At least one uppercase letter
+                </div>
+                <div
+                  id="req-lower"
+                  style="
+                    font-size: 0.78rem;
+                    padding: 0.2rem 0;
+                    color: var(--danger);
+                  "
+                >
+                  ✗ At least one lowercase letter
+                </div>
+                <div
+                  id="req-number"
+                  style="
+                    font-size: 0.78rem;
+                    padding: 0.2rem 0;
+                    color: var(--danger);
+                  "
+                >
+                  ✗ At least one number
+                </div>
+                <div
+                  id="req-symbol"
+                  style="
+                    font-size: 0.78rem;
+                    padding: 0.2rem 0;
+                    color: var(--danger);
+                  "
+                >
+                  ✗ At least one symbol (!@#$...)
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label>Base Currency</label>
@@ -1091,8 +1330,8 @@
               <div id="reportSummary"></div>
             </div>
           </div>
-        
-       <!-- GROUPS PAGE -->
+
+          <!-- GROUPS PAGE -->
           <div class="page" id="page-groups">
             <div class="section">
               <div class="section-header">
@@ -1101,10 +1340,16 @@
               <div class="form-grid">
                 <div class="form-group full">
                   <label>Group Name</label>
-                  <input type="text" id="groupName" placeholder="e.g. Apartment, Trip to Paris">
+                  <input
+                    type="text"
+                    id="groupName"
+                    placeholder="e.g. Apartment, Trip to Paris"
+                  />
                 </div>
                 <div class="full">
-                  <button class="btn btn-primary" onclick="createGroup()">Create Group</button>
+                  <button class="btn btn-primary" onclick="createGroup()">
+                    Create Group
+                  </button>
                 </div>
               </div>
             </div>
@@ -1113,30 +1358,74 @@
                 <div class="section-title">Your Groups</div>
               </div>
               <div id="groupsList">
-                <div class="empty"><div class="empty-icon">👥</div><div class="empty-text">No groups yet</div></div>
+                <div class="empty">
+                  <div class="empty-icon">👥</div>
+                  <div class="empty-text">No groups yet</div>
+                </div>
               </div>
             </div>
             <!-- Group Detail -->
-            <div id="groupDetail" style="display:none">
+            <div id="groupDetail" style="display: none">
               <div class="section">
                 <div class="section-header">
                   <div class="section-title" id="groupDetailName">Group</div>
-                  <button class="btn btn-secondary btn-sm" onclick="closeGroupDetail()">← Back</button>
+                  <button
+                    class="btn btn-secondary btn-sm"
+                    onclick="closeGroupDetail()"
+                  >
+                    ← Back
+                  </button>
                 </div>
-                <div style="margin-bottom:1.5rem">
-                  <div style="font-weight:600;margin-bottom:0.75rem;font-size:0.9rem">Members</div>
+                <div style="margin-bottom: 1.5rem">
+                  <div
+                    style="
+                      font-weight: 600;
+                      margin-bottom: 0.75rem;
+                      font-size: 0.9rem;
+                    "
+                  >
+                    Members
+                  </div>
                   <div id="groupMembers"></div>
-                  <div style="display:flex;gap:0.5rem;margin-top:0.75rem">
-                    <input type="email" id="addMemberEmail" placeholder="Search by email..." style="flex:1">
-                    <button class="btn btn-secondary btn-sm" onclick="searchAndAddMember()" style="width:auto">Add Member</button>
+                  <div
+                    style="display: flex; gap: 0.5rem; margin-top: 0.75rem"
+                    id="addMemberSection"
+                  >
+                    <input
+                      type="email"
+                      id="addMemberEmail"
+                      placeholder="Search by email..."
+                      style="flex: 1"
+                    />
+                    <button
+                      class="btn btn-secondary btn-sm"
+                      onclick="searchAndAddMember()"
+                      style="width: auto"
+                    >
+                      Add Member
+                    </button>
                   </div>
                 </div>
-                <div style="margin-bottom:1.5rem">
-                  <div style="font-weight:600;margin-bottom:0.75rem;font-size:0.9rem">Add Group Expense</div>
+                <div style="margin-bottom: 1.5rem">
+                  <div
+                    style="
+                      font-weight: 600;
+                      margin-bottom: 0.75rem;
+                      font-size: 0.9rem;
+                    "
+                  >
+                    Add Group Expense
+                  </div>
                   <div class="form-grid">
                     <div class="form-group">
                       <label>Amount</label>
-                      <input type="number" id="gExpAmount" placeholder="0.00" min="0.01" step="0.01">
+                      <input
+                        type="number"
+                        id="gExpAmount"
+                        placeholder="0.00"
+                        min="0.01"
+                        step="0.01"
+                      />
                     </div>
                     <div class="form-group">
                       <label>Currency</label>
@@ -1153,11 +1442,15 @@
                     </div>
                     <div class="form-group">
                       <label>Date</label>
-                      <input type="date" id="gExpDate">
+                      <input type="date" id="gExpDate" />
                     </div>
                     <div class="form-group">
                       <label>Description</label>
-                      <input type="text" id="gExpDesc" placeholder="What was this for?">
+                      <input
+                        type="text"
+                        id="gExpDesc"
+                        placeholder="What was this for?"
+                      />
                     </div>
                     <div class="form-group">
                       <label>Split Type</label>
@@ -1169,14 +1462,30 @@
                     </div>
                     <div class="full" id="splitInputsContainer"></div>
                     <div class="full">
-                      <button class="btn btn-primary" onclick="addGroupExpense()">Add Group Expense</button>
+                      <button
+                        class="btn btn-primary"
+                        onclick="addGroupExpense()"
+                      >
+                        Add Group Expense
+                      </button>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <div style="font-weight:600;margin-bottom:0.75rem;font-size:0.9rem">Group Expenses</div>
+                  <div
+                    style="
+                      font-weight: 600;
+                      margin-bottom: 0.75rem;
+                      font-size: 0.9rem;
+                    "
+                  >
+                    Group Expenses
+                  </div>
                   <div id="groupExpensesList">
-                    <div class="empty"><div class="empty-icon">💸</div><div class="empty-text">No expenses yet</div></div>
+                    <div class="empty">
+                      <div class="empty-icon">💸</div>
+                      <div class="empty-text">No expenses yet</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1189,30 +1498,71 @@
               <div class="section-header">
                 <div class="section-title">Two-Factor Authentication</div>
               </div>
-              <div id="tfaStatus" style="margin-bottom:1rem;color:var(--text2);font-size:0.9rem">Loading 2FA status...</div>
-              <div id="tfaSetup" style="display:none">
-                <p style="color:var(--text2);font-size:0.9rem;margin-bottom:1rem">Scan the QR code with Google Authenticator, then enter the 6-digit code.</p>
-                <div id="qrCodeContainer" style="margin-bottom:1rem"></div>
+              <div
+                id="tfaStatus"
+                style="
+                  margin-bottom: 1rem;
+                  color: var(--text2);
+                  font-size: 0.9rem;
+                "
+              >
+                Loading 2FA status...
+              </div>
+              <div id="tfaSetup" style="display: none">
+                <p
+                  style="
+                    color: var(--text2);
+                    font-size: 0.9rem;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  Scan the QR code with Google Authenticator, then enter the
+                  6-digit code.
+                </p>
+                <div id="qrCodeContainer" style="margin-bottom: 1rem"></div>
                 <div class="form-group">
                   <label>Verification Code</label>
-                  <input type="text" id="tfaCode" placeholder="6-digit code" maxlength="6">
+                  <input
+                    type="text"
+                    id="tfaCode"
+                    placeholder="6-digit code"
+                    maxlength="6"
+                  />
                 </div>
-                <button class="btn btn-primary" onclick="verify2FA()">Verify & Enable 2FA</button>
+                <button class="btn btn-primary" onclick="verify2FA()">
+                  Verify & Enable 2FA
+                </button>
               </div>
-              <div id="tfaEnable" style="display:none">
-                <button class="btn btn-primary" onclick="setup2FA()">Enable 2FA</button>
+              <div id="tfaEnable" style="display: none">
+                <button class="btn btn-primary" onclick="setup2FA()">
+                  Enable 2FA
+                </button>
               </div>
-              <div id="tfaDisable" style="display:none">
-                <p style="color:var(--accent3);font-size:0.9rem;margin-bottom:1rem">✓ Two-factor authentication is enabled.</p>
+              <div id="tfaDisable" style="display: none">
+                <p
+                  style="
+                    color: var(--accent3);
+                    font-size: 0.9rem;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  ✓ Two-factor authentication is enabled.
+                </p>
                 <div class="form-group">
                   <label>Enter 2FA Code to Disable</label>
-                  <input type="text" id="tfaDisableCode" placeholder="6-digit code" maxlength="6">
+                  <input
+                    type="text"
+                    id="tfaDisableCode"
+                    placeholder="6-digit code"
+                    maxlength="6"
+                  />
                 </div>
-                <button class="btn btn-danger" onclick="disable2FA()">Disable 2FA</button>
+                <button class="btn btn-danger" onclick="disable2FA()">
+                  Disable 2FA
+                </button>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -1221,7 +1571,7 @@
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-      const API = "http://localhost:8000";
+      const API = "https://expense-tracker-backend-zskj.onrender.com";
       let token = localStorage.getItem("token");
       let userId = localStorage.getItem("userId");
       let userName = localStorage.getItem("userName");
@@ -1232,6 +1582,34 @@
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         };
+      }
+
+      async function apiFetch(url, options = {}) {
+        const res = await fetch(url, {
+          ...options,
+          headers: { ...authHeaders(), ...(options.headers || {}) },
+        });
+
+        if (res.status === 401) {
+          // Token expired or invalid — force logout
+          token = null;
+          userId = null;
+          userName = null;
+          localStorage.clear();
+          document.getElementById("mainApp").style.display = "none";
+          document.getElementById("authScreen").style.display = "none";
+          document.getElementById("landingPage").style.display = "block";
+
+          // Show message after a tiny delay so landing page renders first
+          setTimeout(
+            () =>
+              toast("Your session has expired. Please sign in again.", "error"),
+            100,
+          );
+          throw new Error("Unauthorized");
+        }
+
+        return res;
       }
 
       const CATEGORY_ICONS = {
@@ -1248,24 +1626,26 @@
       };
 
       // ── INIT ──
-window.onload = () => {
-  initTheme();
-  const now = new Date();
-  const m = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
-  document.getElementById("monthPicker").value = m;
-  document.getElementById("expDate").value = now.toISOString().split("T")[0];
+      window.onload = () => {
+        initTheme();
+        const now = new Date();
+        const m = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+        document.getElementById("monthPicker").value = m;
+        document.getElementById("expDate").value = now
+          .toISOString()
+          .split("T")[0];
 
-  if (token && userId) {
-    showApp();
-  } else {
-    document.getElementById("landingPage").style.display = "block";
-  }
-};
+        if (token && userId) {
+          showApp();
+        } else {
+          document.getElementById("landingPage").style.display = "block";
+        }
+      };
 
-function showLogin() {
-  document.getElementById("landingPage").style.display = "none";
-  document.getElementById("authScreen").style.display = "flex";
-}
+      function showLogin() {
+        document.getElementById("landingPage").style.display = "none";
+        document.getElementById("authScreen").style.display = "flex";
+      }
 
       // ── AUTH ──
       function switchAuth(mode) {
@@ -1351,8 +1731,25 @@ function showLogin() {
         if (!name || !email || !password)
           return toast("Please fill in all fields", "error");
 
-        const pwError = validatePassword(password);
-        if (pwError) return toast(pwError, "error");
+        const allPassed =
+          document.getElementById("passwordRequirements") &&
+          [
+            "req-length",
+            "req-upper",
+            "req-lower",
+            "req-number",
+            "req-symbol",
+          ].every(
+            (id) =>
+              document.getElementById(id)?.style.color === "var(--success)",
+          );
+
+        if (!allPassed) {
+          document.getElementById("passwordRequirements").style.display =
+            "block";
+          checkPasswordStrength();
+          return toast("Please meet all password requirements", "error");
+        }
 
         try {
           const res = await fetch(`${API}/auth/register`, {
@@ -1377,6 +1774,13 @@ function showLogin() {
         localStorage.clear();
         document.getElementById("mainApp").style.display = "none";
         document.getElementById("authScreen").style.display = "flex";
+        document.getElementById("landingPage").style.display = "block";
+
+        // Clear login fields
+        document.getElementById("loginEmail").value = "";
+        document.getElementById("loginPassword").value = "";
+        document.getElementById("loginTotp").value = "";
+        document.getElementById("totpField").style.display = "none";
       }
 
       function showApp() {
@@ -1393,28 +1797,43 @@ function showLogin() {
 
       // ── NAVIGATION ──
       function showPage(name) {
-  document.querySelectorAll(".page").forEach((p) => p.classList.remove("active"));
-  document.querySelectorAll(".nav-tab").forEach((t) => t.classList.remove("active"));
-  document.getElementById(`page-${name}`).classList.add("active");
-  const tabs = ["dashboard", "expenses", "budgets", "report", "groups", "settings"];
-  document.querySelectorAll(".nav-tab")[tabs.indexOf(name)]?.classList.add("active");
-  localStorage.setItem("activePage", name);
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document
+          .querySelectorAll(".nav-tab")
+          .forEach((t) => t.classList.remove("active"));
+        document.getElementById(`page-${name}`).classList.add("active");
+        const tabs = [
+          "dashboard",
+          "expenses",
+          "budgets",
+          "report",
+          "groups",
+          "settings",
+        ];
+        document
+          .querySelectorAll(".nav-tab")
+          [tabs.indexOf(name)]?.classList.add("active");
+        localStorage.setItem("activePage", name);
 
-  // Hide month bar on groups and settings pages
-  const monthBar = document.querySelector(".month-bar");
-  if (monthBar) {
-    monthBar.style.display = (name === "groups" || name === "settings") ? "none" : "flex";
-  }
+        // Hide month bar on groups and settings pages
+        const monthBar = document.querySelector(".month-bar");
+        if (monthBar) {
+          monthBar.style.display = name === "settings" ? "none" : "flex";
+        }
 
-  if (name === "report") loadReport();
-  if (name === "groups") {
-    document.getElementById('groupDetail').style.display = 'none';
-    const section = document.getElementById('groupsList')?.closest('.section');
-    if (section) section.style.display = 'block';
-    loadGroups();
-  }
-  if (name === "settings") load2FAStatus();
-}
+        if (name === "report") loadReport();
+        if (name === "groups") {
+          document.getElementById("groupDetail").style.display = "none";
+          const section = document
+            .getElementById("groupsList")
+            ?.closest(".section");
+          if (section) section.style.display = "block";
+          loadGroups();
+        }
+        if (name === "settings") load2FAStatus();
+      }
 
       function onMonthChange() {
         loadAll();
@@ -1438,9 +1857,7 @@ function showLogin() {
       // ── CATEGORIES ──
       async function loadCategories() {
         try {
-          const res = await fetch(`${API}/categories`, {
-            headers: authHeaders(),
-          });
+          const res = await apiFetch(`${API}/categories`);
           if (!res.ok) return;
           const data = await res.json();
           categories = data;
@@ -1469,13 +1886,14 @@ function showLogin() {
       async function loadExpenses() {
         const month = getMonth();
         try {
-          const res = await fetch(`${API}/expenses?month=${month}`, {
-            headers: authHeaders(),
-          });
+          const res = await apiFetch(`${API}/expenses?month=${month}`);
           allExpenses = await res.json();
+          currentExpensePage = 1;
           renderExpenses();
         } catch (e) {}
       }
+      let currentExpensePage = 1;
+      const EXPENSES_PER_PAGE = 5;
 
       function renderExpenses() {
         const container = document.getElementById("expenseList");
@@ -1490,7 +1908,13 @@ function showLogin() {
           return;
         }
 
-        const html = allExpenses
+        // Pagination
+        const totalPages = Math.ceil(allExpenses.length / EXPENSES_PER_PAGE);
+        const start = (currentExpensePage - 1) * EXPENSES_PER_PAGE;
+        const end = start + EXPENSES_PER_PAGE;
+        const pageExpenses = allExpenses.slice(start, end);
+
+        const html = pageExpenses
           .map((e) => {
             const cat = categories.find((c) => c.id === e.category_id);
             const icon = CATEGORY_ICONS[cat?.name] || "📦";
@@ -1514,7 +1938,17 @@ function showLogin() {
           })
           .join("");
 
-        container.innerHTML = html;
+        // Pagination controls
+        const pagination = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)">
+      <button class="btn btn-secondary btn-sm" onclick="changeExpensePage(${currentExpensePage - 1})" ${currentExpensePage === 1 ? 'disabled style="opacity:0.4"' : ""}>← Prev</button>
+      <span style="font-size:0.85rem;color:var(--text2)">Page ${currentExpensePage} of ${totalPages} · ${allExpenses.length} total</span>
+      <button class="btn btn-secondary btn-sm" onclick="changeExpensePage(${currentExpensePage + 1})" ${currentExpensePage === totalPages ? 'disabled style="opacity:0.4"' : ""}>Next →</button>
+    </div>`;
+
+        container.innerHTML = html + (totalPages > 1 ? pagination : "");
+
+        // Recent expenses — always show latest 5
         recent.innerHTML = allExpenses
           .slice(0, 5)
           .map((e) => {
@@ -1536,6 +1970,13 @@ function showLogin() {
       </div>`;
           })
           .join("");
+      }
+
+      function changeExpensePage(page) {
+        const totalPages = Math.ceil(allExpenses.length / EXPENSES_PER_PAGE);
+        if (page < 1 || page > totalPages) return;
+        currentExpensePage = page;
+        renderExpenses();
       }
 
       async function addExpense() {
@@ -1561,9 +2002,8 @@ function showLogin() {
         if (payment_method) body.payment_method = payment_method;
 
         try {
-          const res = await fetch(`${API}/expenses`, {
+          const res = await apiFetch(`${API}/expenses`, {
             method: "POST",
-            headers: authHeaders(),
             body: JSON.stringify(body),
           });
           const data = await res.json();
@@ -1647,9 +2087,8 @@ function showLogin() {
         const [year, mon] = month.split("-").map(Number);
 
         try {
-          const res = await fetch(`${API}/budgets`, {
+          const res = await apiFetch(`${API}/budgets`, {
             method: "POST",
-            headers: authHeaders(),
             body: JSON.stringify({
               category_id,
               month: mon,
@@ -1690,9 +2129,7 @@ function showLogin() {
         document.getElementById("aiBadge").textContent = "⟳ loading";
 
         try {
-          const res = await fetch(`${API}/reports/monthly?month=${month}`, {
-            headers: authHeaders(),
-          });
+          const res = await apiFetch(`${API}/reports/monthly?month=${month}`);
           const data = await res.json();
 
           // AI narrative
@@ -1772,9 +2209,8 @@ function showLogin() {
       async function deleteExpense(expenseId) {
         if (!confirm("Delete this expense?")) return;
         try {
-          const res = await fetch(`${API}/expenses/${expenseId}`, {
+          const res = await apiFetch(`${API}/expenses/${expenseId}`, {
             method: "DELETE",
-            headers: authHeaders(),
           });
           if (!res.ok) {
             const data = await res.json();
@@ -1791,9 +2227,8 @@ function showLogin() {
       async function deleteBudget(budgetId) {
         if (!confirm("Delete this budget?")) return;
         try {
-          const res = await fetch(`${API}/budgets/${budgetId}`, {
+          const res = await apiFetch(`${API}/budgets/${budgetId}`, {
             method: "DELETE",
-            headers: authHeaders(),
           });
           if (!res.ok) {
             const data = await res.json();
@@ -1812,9 +2247,8 @@ function showLogin() {
         document.getElementById("aiNarrative").textContent =
           "Generating fresh insight...";
         try {
-          await fetch(`${API}/reports/monthly/regenerate?month=${month}`, {
+          await apiFetch(`${API}/reports/monthly/regenerate?month=${month}`, {
             method: "DELETE",
-            headers: authHeaders(),
           });
           await loadReport();
           toast("Report regenerated!", "success");
@@ -1861,9 +2295,8 @@ function showLogin() {
         const name = document.getElementById("groupName").value.trim();
         if (!name) return toast("Enter a group name", "error");
         try {
-          const res = await fetch(`${API}/groups`, {
+          const res = await apiFetch(`${API}/groups`, {
             method: "POST",
-            headers: authHeaders(),
             body: JSON.stringify({ name }),
           });
           const data = await res.json();
@@ -1911,10 +2344,15 @@ function showLogin() {
 
       async function loadGroupMembers() {
         try {
-          const res = await fetch(`${API}/groups/${currentGroupId}/members`, {
-            headers: authHeaders(),
-          });
+          const res = await apiFetch(`${API}/groups/${currentGroupId}/members`);
           groupMembers = await res.json();
+
+          // Get group info to know who the admin is
+          const groupRes = await apiFetch(`${API}/groups/${currentGroupId}`);
+          const groupInfo = await groupRes.json();
+          const adminId = groupInfo.admin_id;
+          const isAdmin = String(adminId) === String(userId);
+
           document.getElementById("groupMembers").innerHTML = groupMembers
             .map(
               (m) => `
@@ -1922,15 +2360,101 @@ function showLogin() {
         <div class="expense-left">
           <div class="expense-icon">👤</div>
           <div>
-            <div class="expense-desc">${m.name}</div>
+            <div class="expense-desc">
+              ${m.name} ${String(m.id) === String(adminId) ? '<span class="tag">admin</span>' : ""}
+            </div>
             <div class="expense-meta">${m.email}</div>
           </div>
         </div>
+        ${
+          isAdmin && String(m.id) !== String(userId)
+            ? `
+          <button class="btn btn-danger btn-sm" onclick="removeMember('${m.id}', '${m.name}')">Remove</button>
+        `
+            : `
+          ${
+            String(m.id) === String(userId)
+              ? `
+            <button class="btn btn-secondary btn-sm" onclick="leaveGroup()">Leave</button>
+          `
+              : ""
+          }
+        `
+        }
       </div>`,
             )
             .join("");
+
+          // Show add member only if admin
+          document.getElementById("addMemberSection").style.display = isAdmin
+            ? "flex"
+            : "none";
+
           renderSplitInputs();
         } catch (e) {}
+      }
+
+      async function removeMember(memberId, memberName) {
+        if (!confirm(`Remove ${memberName} from the group?`)) return;
+        try {
+          const res = await apiFetch(
+            `${API}/groups/${currentGroupId}/members/${memberId}`,
+            {
+              method: "DELETE",
+            },
+          );
+          const data = await res.json();
+          if (!res.ok)
+            return toast(data.detail || "Failed to remove member", "error");
+          toast(`${memberName} removed`, "success");
+          loadGroupMembers();
+        } catch (e) {
+          toast("Connection error", "error");
+        }
+      }
+
+      async function leaveGroup() {
+        if (!confirm("Are you sure you want to leave this group?")) return;
+        try {
+          const res = await apiFetch(`${API}/groups/${currentGroupId}/leave`, {
+            method: "DELETE",
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            // If admin needs to assign new admin
+            if (data.detail?.includes("admin")) {
+              const newAdminEmail = prompt(
+                "You are the admin. Enter the email of the member to assign as new admin:",
+              );
+              if (!newAdminEmail) return;
+              // Find member by email
+              const member = groupMembers.find(
+                (m) => m.email === newAdminEmail,
+              );
+              if (!member) return toast("Member not found", "error");
+              const res2 = await apiFetch(
+                `${API}/groups/${currentGroupId}/leave?new_admin_id=${member.id}`,
+                {
+                  method: "DELETE",
+                },
+              );
+              const data2 = await res2.json();
+              if (!res2.ok)
+                return toast(data2.detail || "Failed to leave", "error");
+              toast(data2.message, "success");
+              closeGroupDetail();
+              loadGroups();
+            } else {
+              return toast(data.detail || "Failed to leave group", "error");
+            }
+          } else {
+            toast(data.message || "You left the group", "success");
+            closeGroupDetail();
+            loadGroups();
+          }
+        } catch (e) {
+          toast("Connection error", "error");
+        }
       }
 
       async function searchAndAddMember() {
@@ -1944,11 +2468,10 @@ function showLogin() {
           const user = await searchRes.json();
           if (!searchRes.ok)
             return toast(user.detail || "User not found", "error");
-          const addRes = await fetch(
+          const addRes = await apiFetch(
             `${API}/groups/${currentGroupId}/members`,
             {
               method: "POST",
-              headers: authHeaders(),
               body: JSON.stringify({ user_id: user.id }),
             },
           );
@@ -2025,19 +2548,21 @@ function showLogin() {
         }
 
         try {
-          const res = await fetch(`${API}/groups/${currentGroupId}/expenses`, {
-            method: "POST",
-            headers: authHeaders(),
-            body: JSON.stringify({
-              original_amount: amount,
-              currency_code,
-              category_id,
-              expense_date,
-              description,
-              split_type,
-              splits,
-            }),
-          });
+          const res = await apiFetch(
+            `${API}/groups/${currentGroupId}/expenses`,
+            {
+              method: "POST",
+              body: JSON.stringify({
+                original_amount: amount,
+                currency_code,
+                category_id,
+                expense_date,
+                description,
+                split_type,
+                splits,
+              }),
+            },
+          );
           const data = await res.json();
           if (!res.ok) {
             btn.disabled = false;
@@ -2058,9 +2583,9 @@ function showLogin() {
 
       async function loadGroupExpenses() {
         try {
-          const res = await fetch(`${API}/groups/${currentGroupId}/expenses`, {
-            headers: authHeaders(),
-          });
+          const res = await apiFetch(
+            `${API}/groups/${currentGroupId}/expenses`,
+          );
           const data = await res.json();
           const container = document.getElementById("groupExpensesList");
           if (!data.length) {
@@ -2096,9 +2621,8 @@ function showLogin() {
       async function deleteGroupExpense(expenseId) {
         if (!confirm("Delete this group expense?")) return;
         try {
-          const res = await fetch(`${API}/expenses/${expenseId}`, {
+          const res = await apifetch(`${API}/expenses/${expenseId}`, {
             method: "DELETE",
-            headers: authHeaders(),
           });
           if (!res.ok) {
             const data = await res.json();
@@ -2114,7 +2638,7 @@ function showLogin() {
       // ── 2FA ──
       async function load2FAStatus() {
         try {
-          const res = await fetch(`${API}/auth/me`, { headers: authHeaders() });
+          const res = await apiFetch(`${API}/auth/me`);
           const me = await res.json();
           document.getElementById("tfaStatus").textContent = me.is_2fa_enabled
             ? "2FA is currently enabled"
@@ -2132,9 +2656,8 @@ function showLogin() {
 
       async function setup2FA() {
         try {
-          const res = await fetch(`${API}/auth/2fa/setup`, {
+          const res = await apiFetch(`${API}/auth/2fa/setup`, {
             method: "POST",
-            headers: authHeaders(),
           });
           const data = await res.json();
           if (!res.ok)
@@ -2157,9 +2680,8 @@ function showLogin() {
         if (!code || code.length !== 6)
           return toast("Enter a valid 6-digit code", "error");
         try {
-          const res = await fetch(`${API}/auth/2fa/verify`, {
+          const res = await apiFetch(`${API}/auth/2fa/verify`, {
             method: "POST",
-            headers: authHeaders(),
             body: JSON.stringify({ code }),
           });
           const data = await res.json();
@@ -2176,9 +2698,8 @@ function showLogin() {
         if (!code || code.length !== 6)
           return toast("Enter a valid 6-digit code", "error");
         try {
-          const res = await fetch(`${API}/auth/2fa/disable`, {
+          const res = await apiFetch(`${API}/auth/2fa/disable`, {
             method: "POST",
-            headers: authHeaders(),
             body: JSON.stringify({ code }),
           });
           const data = await res.json();
@@ -2205,6 +2726,42 @@ function showLogin() {
         document.documentElement.setAttribute("data-theme", saved);
         const btn = document.getElementById("themeBtn");
         if (btn) btn.textContent = saved === "light" ? "☀️" : "🌙";
+      }
+
+      function checkPasswordStrength() {
+        const password = document.getElementById("regPassword").value;
+        const requirements = document.getElementById("passwordRequirements");
+        requirements.style.display = password.length > 0 ? "block" : "none";
+
+        const checks = {
+          "req-length": password.length >= 8,
+          "req-upper": /[A-Z]/.test(password),
+          "req-lower": /[a-z]/.test(password),
+          "req-number": /[0-9]/.test(password),
+          "req-symbol": /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password),
+        };
+
+        for (const [id, passed] of Object.entries(checks)) {
+          const el = document.getElementById(id);
+          if (passed) {
+            el.style.color = "var(--success)";
+            el.textContent = "✓ " + el.textContent.slice(2);
+          } else {
+            el.style.color = "var(--danger)";
+            el.textContent = "✗ " + el.textContent.slice(2);
+          }
+        }
+      }
+
+      function togglePasswordVisibility(inputId, btn) {
+        const input = document.getElementById(inputId);
+        if (input.type === "password") {
+          input.type = "text";
+          btn.textContent = "🙈";
+        } else {
+          input.type = "password";
+          btn.textContent = "👁";
+        }
       }
 
       // ── TOAST ──
