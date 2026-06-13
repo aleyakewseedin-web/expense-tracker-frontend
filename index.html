@@ -672,6 +672,8 @@
       ::-webkit-scrollbar-track { background: var(--bg); }
       ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
   </head>
   <body>
     <div class="app">
@@ -1108,7 +1110,19 @@
                 <div class="stat-sub">categories</div>
               </div>
             </div>
-
+              
+          <div class="section" id="trendSection">
+             <div class="section-header">
+              <div class="section-title">Spending Trend</div>
+               <select id="trendMonths" onchange="loadTrend()" class="input" style="width:auto;padding:0.3rem 0.6rem">
+                 <option value="3">3 months</option>
+                 <option value="6" selected>6 months</option>
+                 <option value="12">12 months</option>
+               </select>
+             </div>
+            <canvas id="trendChart" height="120"></canvas>
+          </div>
+             
             <div class="section">
               <div class="section-header">
                 <div class="section-title">Recent Expenses</div>
@@ -1225,8 +1239,11 @@
             <div class="section">
               <div class="section-header">
                 <div class="section-title">All Expenses</div>
+                <div style="display:flex;gap:0.5rem;align-items:center">
                 <span id="expenseCount" class="tag">0 items</span>
+                <button class="btn btn-secondary btn-sm" onclick="downloadCSV()">⬇ Export CSV</button>
               </div>
+            </div>
               <div id="expenseList">
                 <div class="empty">
                   <div class="empty-icon">💸</div>
@@ -1571,7 +1588,7 @@
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-      const API = "https://expense-tracker-backend-zskj.onrender.com";
+      const API = "http://localhost:8000";
       let token = localStorage.getItem("token");
       let userId = localStorage.getItem("userId");
       let userName = localStorage.getItem("userName");
@@ -1585,8 +1602,8 @@
       }
 
       async function apiFetch(url, options = {}) {
-        const res = await fetch(url, {
-          ...options,
+         const res = await fetch(`${API}${url}`, {          
+         ...options,
           headers: { ...authHeaders(), ...(options.headers || {}) },
         });
 
@@ -1852,12 +1869,13 @@
       async function loadAll() {
         await Promise.all([loadExpenses(), loadBudgets()]);
         updateDashboard();
+        loadTrend();
       }
 
       // ── CATEGORIES ──
       async function loadCategories() {
         try {
-          const res = await apiFetch(`${API}/categories`);
+          const res = await apiFetch('/categories');
           if (!res.ok) return;
           const data = await res.json();
           categories = data;
@@ -1886,7 +1904,7 @@
       async function loadExpenses() {
         const month = getMonth();
         try {
-          const res = await apiFetch(`${API}/expenses?month=${month}`);
+          const res = await apiFetch(`/expenses?month=${month}`);
           allExpenses = await res.json();
           currentExpensePage = 1;
           renderExpenses();
@@ -1933,6 +1951,14 @@
             <div class="expense-usd">$${parseFloat(e.amount_usd).toFixed(2)} USD</div>
           </div>
           <button class="btn btn-danger btn-sm" onclick="deleteExpense('${e.id}')">✕</button>
+          <label class="btn btn-secondary btn-sm" style="cursor:pointer;margin:0">
+            📎
+            <input type="file" accept="image/*" style="display:none" onchange="uploadReceipt('${e.id}', this)">
+          </label>
+          ${e.receipt_reference ? `
+            <a href="${e.receipt_reference}" target="_blank" class="btn btn-secondary btn-sm">👁</a>
+            <button class="btn btn-danger btn-sm" onclick="removeReceipt('${e.id}')">🗑</button>
+          ` : ''}
         </div>
       </div>`;
           })
@@ -2002,7 +2028,7 @@
         if (payment_method) body.payment_method = payment_method;
 
         try {
-          const res = await apiFetch(`${API}/expenses`, {
+          const res = await apiFetch(`/expenses`, {
             method: "POST",
             body: JSON.stringify(body),
           });
@@ -2087,7 +2113,7 @@
         const [year, mon] = month.split("-").map(Number);
 
         try {
-          const res = await apiFetch(`${API}/budgets`, {
+          const res = await apiFetch(`/budgets`, {
             method: "POST",
             body: JSON.stringify({
               category_id,
@@ -2129,7 +2155,7 @@
         document.getElementById("aiBadge").textContent = "⟳ loading";
 
         try {
-          const res = await apiFetch(`${API}/reports/monthly?month=${month}`);
+          const res = await apiFetch(`/reports/monthly?month=${month}`);
           const data = await res.json();
 
           // AI narrative
@@ -2209,7 +2235,7 @@
       async function deleteExpense(expenseId) {
         if (!confirm("Delete this expense?")) return;
         try {
-          const res = await apiFetch(`${API}/expenses/${expenseId}`, {
+          const res = await apiFetch(`/expenses/${expenseId}`, {
             method: "DELETE",
           });
           if (!res.ok) {
@@ -2227,7 +2253,7 @@
       async function deleteBudget(budgetId) {
         if (!confirm("Delete this budget?")) return;
         try {
-          const res = await apiFetch(`${API}/budgets/${budgetId}`, {
+          const res = await apiFetch(`/budgets/${budgetId}`, {
             method: "DELETE",
           });
           if (!res.ok) {
@@ -2247,7 +2273,7 @@
         document.getElementById("aiNarrative").textContent =
           "Generating fresh insight...";
         try {
-          await apiFetch(`${API}/reports/monthly/regenerate?month=${month}`, {
+          await apiFetch(`/reports/monthly/regenerate?month=${month}`, {
             method: "DELETE",
           });
           await loadReport();
@@ -2295,7 +2321,7 @@
         const name = document.getElementById("groupName").value.trim();
         if (!name) return toast("Enter a group name", "error");
         try {
-          const res = await apiFetch(`${API}/groups`, {
+          const res = await apiFetch(`/groups`, {
             method: "POST",
             body: JSON.stringify({ name }),
           });
@@ -2344,11 +2370,11 @@
 
       async function loadGroupMembers() {
         try {
-          const res = await apiFetch(`${API}/groups/${currentGroupId}/members`);
+          const res = await apiFetch(`/groups/${currentGroupId}/members`);
           groupMembers = await res.json();
 
           // Get group info to know who the admin is
-          const groupRes = await apiFetch(`${API}/groups/${currentGroupId}`);
+          const groupRes = await apiFetch(`/groups/${currentGroupId}`);
           const groupInfo = await groupRes.json();
           const adminId = groupInfo.admin_id;
           const isAdmin = String(adminId) === String(userId);
@@ -2398,7 +2424,7 @@
         if (!confirm(`Remove ${memberName} from the group?`)) return;
         try {
           const res = await apiFetch(
-            `${API}/groups/${currentGroupId}/members/${memberId}`,
+            `/groups/${currentGroupId}/members/${memberId}`,
             {
               method: "DELETE",
             },
@@ -2416,7 +2442,7 @@
       async function leaveGroup() {
         if (!confirm("Are you sure you want to leave this group?")) return;
         try {
-          const res = await apiFetch(`${API}/groups/${currentGroupId}/leave`, {
+          const res = await apiFetch(`/groups/${currentGroupId}/leave`, {
             method: "DELETE",
           });
           const data = await res.json();
@@ -2433,7 +2459,7 @@
               );
               if (!member) return toast("Member not found", "error");
               const res2 = await apiFetch(
-                `${API}/groups/${currentGroupId}/leave?new_admin_id=${member.id}`,
+                `/groups/${currentGroupId}/leave?new_admin_id=${member.id}`,
                 {
                   method: "DELETE",
                 },
@@ -2469,7 +2495,7 @@
           if (!searchRes.ok)
             return toast(user.detail || "User not found", "error");
           const addRes = await apiFetch(
-            `${API}/groups/${currentGroupId}/members`,
+            `/groups/${currentGroupId}/members`,
             {
               method: "POST",
               body: JSON.stringify({ user_id: user.id }),
@@ -2549,7 +2575,7 @@
 
         try {
           const res = await apiFetch(
-            `${API}/groups/${currentGroupId}/expenses`,
+            `/groups/${currentGroupId}/expenses`,
             {
               method: "POST",
               body: JSON.stringify({
@@ -2584,7 +2610,7 @@
       async function loadGroupExpenses() {
         try {
           const res = await apiFetch(
-            `${API}/groups/${currentGroupId}/expenses`,
+            `/groups/${currentGroupId}/expenses`,
           );
           const data = await res.json();
           const container = document.getElementById("groupExpensesList");
@@ -2621,7 +2647,7 @@
       async function deleteGroupExpense(expenseId) {
         if (!confirm("Delete this group expense?")) return;
         try {
-          const res = await apifetch(`${API}/expenses/${expenseId}`, {
+          const res = await apifetch(`/expenses/${expenseId}`, {
             method: "DELETE",
           });
           if (!res.ok) {
@@ -2638,7 +2664,7 @@
       // ── 2FA ──
       async function load2FAStatus() {
         try {
-          const res = await apiFetch(`${API}/auth/me`);
+          const res = await apiFetch(`/auth/me`);
           const me = await res.json();
           document.getElementById("tfaStatus").textContent = me.is_2fa_enabled
             ? "2FA is currently enabled"
@@ -2656,7 +2682,7 @@
 
       async function setup2FA() {
         try {
-          const res = await apiFetch(`${API}/auth/2fa/setup`, {
+          const res = await apiFetch(`/auth/2fa/setup`, {
             method: "POST",
           });
           const data = await res.json();
@@ -2680,7 +2706,7 @@
         if (!code || code.length !== 6)
           return toast("Enter a valid 6-digit code", "error");
         try {
-          const res = await apiFetch(`${API}/auth/2fa/verify`, {
+          const res = await apiFetch(`/auth/2fa/verify`, {
             method: "POST",
             body: JSON.stringify({ code }),
           });
@@ -2698,7 +2724,7 @@
         if (!code || code.length !== 6)
           return toast("Enter a valid 6-digit code", "error");
         try {
-          const res = await apiFetch(`${API}/auth/2fa/disable`, {
+          const res = await apiFetch(`/auth/2fa/disable`, {
             method: "POST",
             body: JSON.stringify({ code }),
           });
@@ -2763,7 +2789,111 @@
           btn.textContent = "👁";
         }
       }
+       
+async function uploadReceipt(expenseId, input) {
+  const file = input.files[0];
+  if (!file) return;
+  const formData = new FormData();
+  formData.append('file', file);
+  try {
+    const res = await fetch(`${API}/expenses/${expenseId}/receipt`, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${token}` },
+      body: formData
+    });
+    const data = await res.json();
+    if (!res.ok) return toast(data.detail || 'Upload failed', 'error');
+    toast('Receipt uploaded!', 'success');
+    loadAll();
+  } catch(e) {
+    toast('Connection error', 'error');
+  }
+}      
+        
 
+async function removeReceipt(expenseId) {
+  const res = await fetch(`${API}/expenses/${expenseId}/receipt`, {
+    method: 'DELETE',
+    headers: authHeaders()
+  });
+  if (res.ok) {
+    toast('Receipt removed', 'success');
+    loadAll();
+  } else {
+    toast('Failed to remove receipt', 'error');
+  }
+}
+
+async function downloadCSV() {
+  const month = getMonth();
+  const url = `${API}/expenses/export?month=${month}`;
+  try {
+    const res = await fetch(url, { headers: authHeaders() });
+    if (!res.ok) return toast('Export failed', 'error');
+    const blob = await res.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = blobUrl;
+    a.download = `expenses-${month}.csv`;
+    a.click();
+    URL.revokeObjectURL(blobUrl);
+  } catch(e) {
+    toast('Connection error', 'error');
+  }
+}
+
+
+let trendChartInstance = null;
+
+async function loadTrend() {
+  const months = document.getElementById('trendMonths').value;
+  const res = await apiFetch(`/analytics/trend?months=${months}`);
+  if (!res) return;
+  const data = await res.json();
+  if (!res.ok) return;
+
+  const labels = data.months.map(m => m.month);
+  const values = data.months.map(m => m.total_usd);
+
+  const ctx = document.getElementById('trendChart').getContext('2d');
+  
+  if (trendChartInstance) trendChartInstance.destroy();
+  
+  trendChartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Total Spent (USD)',
+        data: values,
+        borderColor: '#7c6dfa',
+        backgroundColor: 'rgba(124, 109, 250, 0.1)',
+        borderWidth: 2,
+        pointBackgroundColor: '#7c6dfa',
+        pointRadius: 5,
+        fill: true,
+        tension: 0.4
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => `$${ctx.parsed.y.toFixed(2)} USD`
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { callback: val => `$${val}` }
+        }
+      }
+    }
+  });
+}
       // ── TOAST ──
       function toast(msg, type = "success") {
         const t = document.createElement("div");
